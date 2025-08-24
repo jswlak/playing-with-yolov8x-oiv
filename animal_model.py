@@ -7,5 +7,7 @@ model = YOLO("yolov8x-oiv7.pt")   # 'x' = extra large, best accuracy
 # Run detection on an image
 results = model("test_image.jpg", save=True)
 
-# Show class names
-print(model.names)
+# Print detected classes only
+for r in results:
+    for c in r.boxes.cls:
+        print("Detected:", model.names[int(c)])
